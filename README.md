@@ -43,13 +43,13 @@ Una sola página, mobile-first, en español rioplatense:
 
 ### Formulario: estado actual (importante)
 
-El formulario hoy **no tiene backend**. Al enviarlo, arma un `mailto:` con las respuestas y le abre al usuario su cliente de mail. Es un placeholder funcional para no bloquear la publicación, pero tiene dos pendientes antes de compartir la landing con familias reales:
+El formulario hoy **no tiene backend**. Al enviarlo, arma un `mailto:` con las respuestas y le abre al usuario su cliente de mail. Es un placeholder funcional para no bloquear la publicación.
 
-1. **Reemplazar el email de destino.** En `index.html`, buscar:
+1. **Email de destino.** En `index.html`:
    ```js
-   var CONTACT_EMAIL = "TU-EMAIL-AQUI@ejemplo.com";
+   var CONTACT_EMAIL = "franpuchala8@gmail.com";
    ```
-   y poner el mail real donde quieren recibir las respuestas.
+   Para el boceto usa el email de Francisco. Si el proyecto pasa a tener un mail propio, cambiarlo acá.
 
 2. **(Recomendado) Centralizar las respuestas.** Un `mailto` depende de que el visitante tenga cliente de mail configurado en el celular, y no queda una tabla prolija de respuestas. Alternativas simples para conectar acá:
    - Google Sheets vía un webhook de Apps Script (gratis, rápido de armar).
@@ -58,7 +58,7 @@ El formulario hoy **no tiene backend**. Al enviarlo, arma un `mailto:` con las r
 
 ## Próximos pasos sugeridos
 
-1. Reemplazar `CONTACT_EMAIL` y revisar el copy con la persona a cargo del proyecto.
+1. Revisar el copy con la persona a cargo del proyecto (el `CONTACT_EMAIL` ya está cargado para el boceto).
 2. (Opcional pero recomendado) conectar el formulario a Sheets/Firebase para no depender del mailto.
 3. Deploy: GitHub Pages es lo más directo dado que el repo se llama `RAIZ` (Settings → Pages → deploy desde `main`).
 4. Compartir el link con familias + lanzar la encuesta en paralelo.

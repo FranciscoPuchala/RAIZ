@@ -549,9 +549,8 @@
 
 <script>
 (function(){
-  // TODO: reemplazar por el email real donde quieran recibir las respuestas
-  // de la encuesta antes de compartir esta landing con familias.
-  var CONTACT_EMAIL = "TU-EMAIL-AQUI@ejemplo.com";
+  // Email donde llegan las respuestas de la encuesta (boceto: email de Francisco).
+  var CONTACT_EMAIL = "franpuchala8@gmail.com";
 
   var form = document.getElementById('raiz-form');
   if(!form) return;
@@ -577,7 +576,7 @@
       'Comentario: ' + (comentario || '—')
     ].join('\n');
 
-    var mailto = 'mailto:' + encodeURIComponent(CONTACT_EMAIL) +
+    var mailto = 'mailto:' + CONTACT_EMAIL +
       '?subject=' + encodeURIComponent(subject) +
       '&body=' + encodeURIComponent(body);
 
