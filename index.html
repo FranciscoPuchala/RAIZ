@@ -3,157 +3,314 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Raíz es una app para detectar a tiempo señales del desarrollo del lenguaje y las matemáticas en niños de 3 a 5 años, y acompañar a las familias desde casa.">
-<title>Raíz — Detección temprana, en casa</title>
+<meta name="description" content="Raíz: juegos cortos para hacer en casa que te ayudan a detectar a tiempo señales en el lenguaje y los números de chicos de 3 a 5 años. Proyecto en validación en Uruguay.">
+<title>Raíz — Detección temprana del lenguaje y los números, en casa</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
-<script src="js/main.js" defer></script>
+<script src="js/interacciones.js" defer></script>
+<script src="js/formulario.js" defer></script>
 </head>
 <body>
 
-<header>
-  <div class="wrap">
-    <div class="wordmark">Raíz<small>Detección temprana, en casa</small></div>
-    <a class="btn btn-ghost" href="#form">Sumarme</a>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="wordmark" href="#top">Raíz<small>Detección temprana, en casa</small></a>
+    <a class="btn btn-cta btn-sm header-cta" href="#form">Quiero sumarme</a>
   </div>
 </header>
 
-<main>
-  <section class="hero">
-    <div class="hero-roots" aria-hidden="true"></div>
-    <div class="wrap">
-      <div class="hero-inner">
-        <span class="eyebrow">Educación · 3 a 5 años</span>
-        <h1 class="headline">Cada señal a tiempo abre un camino distinto</h1>
-        <p class="hero-sub">Raíz es una app para acompañar en casa el desarrollo del lenguaje y las matemáticas de tu hijo o hija, y saber con más claridad cuándo vale la pena consultar a un profesional.</p>
+<main id="contenido">
+
+  <!-- 1. Hero -->
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Para familias con chicos de 3 a 5 años</p>
+        <h1 class="hero-title">Detectá a tiempo señales en su lenguaje y sus números</h1>
+        <p class="hero-sub">Juegos cortos para hacer en casa que te muestran qué es esperable para su edad y cuándo vale la pena consultar a un profesional.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#form">
+          <a class="btn btn-cta" id="hero-cta" href="#form">
             Quiero sumarme a la validación
             <span class="icon icon-flecha" aria-hidden="true"></span>
           </a>
+          <p class="cta-micro">Gratis · 1 minuto · Sin compromiso</p>
         </div>
-        <div class="trust-line">
-          <span class="icon icon-escudo" aria-hidden="true"></span>
-          <p>Proyecto en etapa de validación en Uruguay. Raíz no reemplaza un diagnóstico ni una consulta profesional.</p>
+        <div class="hero-proof">
+          <p class="hero-stat">
+            <strong>1 de cada 5</strong>
+            niños y niñas menores de 5 años en Uruguay presenta dificultades en lenguaje y matemáticas.
+            <cite>Fuente: INEEd y Udelar, 2025</cite>
+          </p>
+          <p class="hero-trust">
+            <span class="icon icon-escudo" aria-hidden="true"></span>
+            <span>Raíz no diagnostica ni reemplaza a un profesional: te ayuda a saber cuándo consultar.</span>
+          </p>
+        </div>
+      </div>
+
+      <figure class="hero-visual">
+        <div class="phone" aria-hidden="true">
+          <div class="phone-screen">
+            <div class="app-top">
+              <span class="app-hello">Hola, familia</span>
+              <span class="app-avatar">R</span>
+            </div>
+            <div class="app-card">
+              <span class="app-tag">Lenguaje</span>
+              <p class="app-card-title">Rimas en la cocina</p>
+              <p class="app-meta"><span class="icon icon-reloj"></span>5 min · Para hacer juntos</p>
+              <span class="app-button">Empezar actividad</span>
+            </div>
+            <div class="app-card">
+              <p class="app-card-label">Lo que observaste esta semana</p>
+              <ul class="app-signals">
+                <li><span class="dot dot-ok"></span><span>Nombra objetos de la casa</span><em>Esperable</em></li>
+                <li><span class="dot dot-ok"></span><span>Cuenta hasta 5</span><em>Esperable</em></li>
+                <li><span class="dot dot-watch"></span><span>Sigue consignas de 2 pasos</span><em>Mirar de cerca</em></li>
+              </ul>
+              <p class="app-hint">Probá “Simón dice” esta semana. Si sigue igual, consultalo con tu pediatra.</p>
+            </div>
+          </div>
+        </div>
+        <figcaption>Boceto ilustrativo de la app</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 2. Problema (PAS) -->
+  <section class="section section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">¿Te suena?</p>
+        <h2 class="section-title">Querés acompañar su crecimiento, pero no siempre sabés si lo que ves es esperable</h2>
+      </div>
+
+      <ul class="pain-list reveal">
+        <li class="pain">
+          <p class="pain-quote">¿Esto es normal para su edad?</p>
+          <p>Lo comparás con otros chicos y te quedás con la duda: ¿es cuestión de tiempos o hay que prestarle atención?</p>
+        </li>
+        <li class="pain">
+          <p class="pain-quote">Internet me confunde más</p>
+          <p>Buscás respuestas y encontrás opiniones que se contradicen, o que te asustan más de lo necesario.</p>
+        </li>
+        <li class="pain">
+          <p class="pain-quote">No sé si amerita una consulta</p>
+          <p>Conseguir hora con un especialista no siempre es fácil. No querés ir por nada… ni tampoco llegar tarde.</p>
+        </li>
+      </ul>
+
+      <div class="agitate reveal">
+        <p>Estas dudas importan. Cuando una dificultad en el lenguaje o las matemáticas no se detecta a tiempo, anticipa un bajo rendimiento escolar. Y hoy esa detección depende de una consulta que muchas veces llega tarde, o no llega.</p>
+        <p class="agitate-solution">Raíz existe para adelantar esa detección: desde tu casa, jugando y de forma accesible.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Cómo funciona -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Cómo funciona</p>
+        <h2 class="section-title">Tres pasos, sin complicarla</h2>
+      </div>
+
+      <ol class="steps reveal">
+        <li class="step">
+          <div class="step-top">
+            <span class="step-icon"><span class="icon icon-libro" aria-hidden="true"></span></span>
+            <span class="step-num" aria-hidden="true">01</span>
+          </div>
+          <h3>Jugás en casa</h3>
+          <p>Actividades cortas pensadas para su edad, explicadas paso a paso, para hacer juntos en ratos del día a día.</p>
+        </li>
+        <li class="step">
+          <div class="step-top">
+            <span class="step-icon"><span class="icon icon-lupa" aria-hidden="true"></span></span>
+            <span class="step-num" aria-hidden="true">02</span>
+          </div>
+          <h3>Anotás lo que observaste</h3>
+          <p>Unas preguntas simples después de cada juego, sin términos técnicos. Nada de exámenes.</p>
+        </li>
+        <li class="step">
+          <div class="step-top">
+            <span class="step-icon"><span class="icon icon-conexion" aria-hidden="true"></span></span>
+            <span class="step-num" aria-hidden="true">03</span>
+          </div>
+          <h3>Salís de la duda</h3>
+          <p>Ves qué es esperable para su edad, qué conviene mirar de cerca y cuándo vale la pena consultar a un profesional.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 4. Para quién es / qué no es -->
+  <section class="section section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Seamos claros</p>
+        <h2 class="section-title">Para quién es Raíz, y qué no es</h2>
+      </div>
+
+      <div class="fit-grid reveal">
+        <div class="fit-card fit-card-yes">
+          <h3>Es para vos si…</h3>
+          <ul class="fit-list">
+            <li><span class="icon icon-tilde" aria-hidden="true"></span><span>Tenés hijos o hijas de 3 a 5 años.</span></li>
+            <li><span class="icon icon-tilde" aria-hidden="true"></span><span>Querés acompañar su desarrollo desde casa, sin tener que volverte experto.</span></li>
+            <li><span class="icon icon-tilde" aria-hidden="true"></span><span>Preferís salir de la duda a tiempo, en lugar de esperar a ver qué pasa.</span></li>
+          </ul>
+        </div>
+        <div class="fit-card fit-card-no">
+          <h3>Raíz no es…</h3>
+          <ul class="fit-list">
+            <li><span class="icon icon-cruz" aria-hidden="true"></span><span>Un diagnóstico.</span></li>
+            <li><span class="icon icon-cruz" aria-hidden="true"></span><span>Un reemplazo del pediatra, fonoaudiólogo/a, psicopedagogo/a ni de ningún otro profesional de la salud.</span></li>
+            <li><span class="icon icon-cruz" aria-hidden="true"></span><span>Una pantalla para dejar a los chicos solos: las actividades se hacen en familia.</span></li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="stat-section">
-    <div class="wrap">
-      <span class="eyebrow">Por qué Raíz</span>
-      <div class="stat-grid">
-        <div class="stat-number">1 de 5</div>
-        <div class="stat-text">
-          <p class="stat-label">niños y niñas menores de 5 años en Uruguay presenta dificultades en lenguaje o matemáticas.</p>
-          <p class="source">Fuente: INEEd y Udelar, 2025</p>
-        </div>
-      </div>
-      <p class="stat-body">Esas dificultades, cuando no se detectan a tiempo, anticipan un bajo rendimiento escolar. Hoy la mayoría de las familias depende de una consulta médica o de un especialista para darse cuenta — y esa consulta muchas veces llega tarde, o no llega. Raíz busca adelantar esa detección, desde la casa y de forma accesible.</p>
-    </div>
-  </section>
-
-  <section class="how">
-    <div class="wrap">
-      <span class="eyebrow">Cómo funciona</span>
-      <h2 class="section-title">Tres pasos, sin complicarla</h2>
-      <div class="steps">
-        <div class="step">
-          <div class="step-icon"><span class="icon icon-libro" aria-hidden="true"></span></div>
-          <div>
-            <span class="step-num">01</span>
-            <h3>Observás con actividades simples</h3>
-            <p>Juegos y ejercicios cortos para hacer en casa, pensados para mostrar cómo tu hijo o hija se relaciona con el lenguaje y los números.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-icon"><span class="icon icon-lupa" aria-hidden="true"></span></div>
-          <div>
-            <span class="step-num">02</span>
-            <h3>Recibís señales claras</h3>
-            <p>Raíz traduce lo que observaste en información concreta: qué es esperable para su edad y qué vale la pena mirar de cerca.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-icon"><span class="icon icon-conexion" aria-hidden="true"></span></div>
-          <div>
-            <span class="step-num">03</span>
-            <h3>Sabés cuándo dar el siguiente paso</h3>
-            <p>Si aparecen señales de alerta, te acompañamos hacia una consulta profesional — con información, no con diagnósticos.</p>
-          </div>
-        </div>
+  <!-- 5. Preguntas frecuentes -->
+  <section class="section">
+    <div class="wrap narrow">
+      <div class="section-head">
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2 class="section-title">Lo que seguramente te estás preguntando</h2>
       </div>
 
-      <div class="note">
-        <span class="icon icon-info" aria-hidden="true"></span>
-        <p><strong>Raíz no diagnostica ni reemplaza a un pediatra, fonoaudiólogo/a, psicopedagogo/a</strong> ni a ningún otro profesional de la salud. Es una herramienta de estimulación y detección temprana pensada para acompañar, no para sustituir a quien corresponde.</p>
+      <div class="faq-list reveal">
+        <details class="faq-item">
+          <summary>¿Raíz hace diagnósticos?<span class="icon icon-mas" aria-hidden="true"></span></summary>
+          <p class="faq-answer">No. Raíz te ayuda a observar y estimular el desarrollo en casa, y a identificar señales que conviene consultar. El diagnóstico siempre lo hace un profesional de la salud.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Cuánto va a costar?<span class="icon icon-mas" aria-hidden="true"></span></summary>
+          <p class="faq-answer">Todavía no lo definimos, y justamente por eso te preguntamos. Queremos que sea accesible para la mayor cantidad de familias posible.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Cuándo va a estar disponible?<span class="icon icon-mas" aria-hidden="true"></span></summary>
+          <p class="faq-answer">Estamos en etapa de validación: antes de construir la app queremos confirmar que realmente les sirve a las familias. Si avanzamos, las personas que se sumen se enteran primero.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Por qué de 3 a 5 años?<span class="icon icon-mas" aria-hidden="true"></span></summary>
+          <p class="faq-answer">Es una etapa en la que el lenguaje y las primeras nociones de números avanzan mucho. Detectar una dificultad antes de empezar la escuela da más margen para acompañarla a tiempo.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Tengo que tener hijos para responder?<span class="icon icon-mas" aria-hidden="true"></span></summary>
+          <p class="faq-answer">No. Si el tema te interesa (porque trabajás con chicos, estás esperando o simplemente te importa), tu opinión también nos sirve.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Qué hacen con mis datos?<span class="icon icon-mas" aria-hidden="true"></span></summary>
+          <p class="faq-answer">Usamos tus respuestas solo para validar el proyecto, y tu email solo para contarte novedades de Raíz. No los compartimos con nadie.</p>
+        </details>
       </div>
     </div>
   </section>
 
-  <section class="form-section" id="form">
-    <div class="wrap">
-      <span class="eyebrow">Etapa de validación</span>
-      <h2 class="section-title">Ayudanos a validar la idea</h2>
-      <p class="section-lead">Antes de construir la app, queremos confirmar algo simple: que esto le sirve a las familias y que tiene sentido como acompañamiento pago. Dos minutos — tu respuesta define los próximos pasos.</p>
+  <!-- 6. Formulario (CTA final) -->
+  <section class="section section-alt form-section" id="form">
+    <div class="wrap form-layout">
+      <div class="form-intro">
+        <p class="eyebrow">Etapa de validación</p>
+        <h2 class="section-title">Cada señal a tiempo abre un camino distinto</h2>
+        <p class="section-lead">Antes de construir la app queremos confirmar que les sirve a las familias. Respondé dos preguntas, dejanos tu email y ayudanos a decidir los próximos pasos.</p>
+        <ul class="form-benefits">
+          <li><span class="icon icon-tilde" aria-hidden="true"></span><span>Dos preguntas y tu email. Nada más.</span></li>
+          <li><span class="icon icon-tilde" aria-hidden="true"></span><span>Te avisamos primero cuando haya novedades.</span></li>
+          <li><span class="icon icon-tilde" aria-hidden="true"></span><span>No compartimos tus datos con nadie.</span></li>
+        </ul>
+      </div>
 
       <div class="form-card">
-        <form id="raiz-form">
-          <div class="form-fields">
-            <div class="field">
-              <label for="f-nombre">Nombre</label>
-              <input type="text" id="f-nombre" name="nombre" required autocomplete="name">
-            </div>
-            <div class="field">
-              <label for="f-email">Email</label>
-              <input type="email" id="f-email" name="email" required autocomplete="email">
-            </div>
-            <div class="field">
-              <label for="f-hijos">¿Tenés hijos o hijas de 3 a 5 años?</label>
-              <select id="f-hijos" name="hijos" required>
-                <option value="" disabled selected>Elegí una opción</option>
-                <option value="si">Sí</option>
-                <option value="no">No, pero me interesa el tema</option>
-                <option value="embarazo">Estoy embarazada o planeando</option>
-              </select>
-            </div>
-            <div class="field">
-              <label>¿Pagarías por una herramienta que te ayude a detectar y acompañar esto en casa?</label>
-              <div class="radio-group" role="radiogroup">
-                <label class="radio-option"><input type="radio" name="pago" value="si" required> Sí, con gusto</label>
-                <label class="radio-option"><input type="radio" name="pago" value="talvez"> Tal vez, depende del precio</label>
-                <label class="radio-option"><input type="radio" name="pago" value="no"> No</label>
+        <form id="raiz-form" data-destino="franpuchala8@gmail.com" data-paso="1" novalidate>
+          <div class="form-progress" aria-hidden="true"><span class="form-progress-bar"></span></div>
+          <p class="form-step-count" id="form-step-count" aria-live="polite">Paso 1 de 2</p>
+
+          <div class="form-step" data-step="1">
+            <fieldset class="question" data-question="hijos">
+              <legend>¿Tenés hijos o hijas de 3 a 5 años?</legend>
+              <div class="options">
+                <label class="option"><input type="radio" name="hijos" value="si"> Sí</label>
+                <label class="option"><input type="radio" name="hijos" value="no"> No, pero me interesa el tema</label>
+                <label class="option"><input type="radio" name="hijos" value="embarazo"> Estamos esperando o planeando</label>
               </div>
+              <p class="field-error" data-error-for="hijos"></p>
+            </fieldset>
+
+            <fieldset class="question" data-question="pago">
+              <legend>¿Pagarías por una herramienta así?</legend>
+              <div class="options">
+                <label class="option"><input type="radio" name="pago" value="si"> Sí, con gusto</label>
+                <label class="option"><input type="radio" name="pago" value="talvez"> Tal vez, depende del precio</label>
+                <label class="option"><input type="radio" name="pago" value="no"> No</label>
+              </div>
+              <p class="field-error" data-error-for="pago"></p>
+            </fieldset>
+
+            <div class="form-actions">
+              <button type="button" class="btn btn-cta btn-block" data-action="siguiente">
+                Seguir
+                <span class="icon icon-flecha" aria-hidden="true"></span>
+              </button>
             </div>
+          </div>
+
+          <div class="form-step" data-step="2" hidden>
+            <div class="field" data-question="email">
+              <label class="field-label" for="f-email">Tu email</label>
+              <input type="email" id="f-email" name="email" autocomplete="email" inputmode="email" placeholder="nombre@ejemplo.com">
+              <p class="field-error" data-error-for="email"></p>
+            </div>
+
             <div class="field">
-              <label for="f-comentario">Comentario <span class="hint">Opcional — ¿qué te gustaría que tenga esta herramienta?</span></label>
+              <label class="field-label" for="f-comentario">¿Qué te gustaría que tenga Raíz? <span class="hint">Opcional</span></label>
               <textarea id="f-comentario" name="comentario"></textarea>
             </div>
+
+            <div class="form-actions form-actions-final">
+              <button type="submit" class="btn btn-cta">
+                Sumarme a la validación
+                <span class="icon icon-flecha" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="btn btn-secondary" data-action="volver">Volver</button>
+            </div>
+            <p class="form-note">Se abre tu app de email para confirmar el envío.</p>
           </div>
 
-          <div class="submit-row">
-            <button type="submit" class="btn btn-primary">Enviar respuesta</button>
-            <span class="form-note">Se abre tu app de email para confirmar el envío.</span>
-          </div>
-
-          <div class="thanks">
+          <div class="thanks" hidden tabindex="-1">
             <span class="icon icon-check" aria-hidden="true"></span>
-            <h3>¡Gracias!</h3>
-            <p>Tu respuesta nos ayuda un montón a decidir los próximos pasos. Te vamos a escribir apenas tengamos novedades.</p>
+            <h3>¡Gracias por sumarte!</h3>
+            <p>Último paso: confirmá el envío en tu app de email. Si no se abrió, escribinos a <a href="mailto:franpuchala8@gmail.com">franpuchala8@gmail.com</a>.</p>
           </div>
         </form>
       </div>
     </div>
   </section>
+
 </main>
 
-<footer>
-  <div class="wrap">
-    <span class="foot-word">Raíz</span>
-    <p class="foot-fine">Este proyecto está en etapa de idea y validación. No constituye un servicio médico, psicológico ni de diagnóstico, y no reemplaza la consulta con un profesional de la salud.</p>
+<div class="sticky-cta" id="sticky-cta" inert>
+  <a class="btn btn-cta btn-block" href="#form">
+    Quiero sumarme
+    <span class="icon icon-flecha" aria-hidden="true"></span>
+  </a>
+  <p class="cta-micro">Gratis · 1 minuto</p>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <p class="foot-word">Raíz</p>
+      <p class="foot-fine">Proyecto en etapa de idea y validación en Uruguay. No constituye un servicio médico, psicológico ni de diagnóstico, y no reemplaza la consulta con un profesional de la salud.</p>
+    </div>
+    <p class="foot-meta">© 2026 Raíz · <a href="mailto:franpuchala8@gmail.com">franpuchala8@gmail.com</a></p>
   </div>
 </footer>
 
