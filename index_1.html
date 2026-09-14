@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Raíz es una app para detectar a tiempo señales del desarrollo del lenguaje y las matemáticas en niños de 3 a 5 años, y acompañar a las familias desde casa.">
+<title>Raíz — Detección temprana, en casa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F1EDE0;
+    --card:#FAF8EF;
+    --ink:#22231C;
+    --ink-soft:#4A4C3F;
+    --forest:#2E4635;
+    --forest-2:#4C6B54;
+    --leaf:#7E9E68;
+    --gold:#C89A3E;
+    --line:rgba(34,35,28,0.14);
+    --line-soft:rgba(34,35,28,0.08);
+    --shadow: 0 1px 2px rgba(34,35,28,0.06), 0 8px 24px -12px rgba(34,35,28,0.18);
+    --radius: 18px;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#1B1C15;
+      --card:#232419;
+      --ink:#ECE7D6;
+      --ink-soft:#B9B49F;
+      --forest:#93B78F;
+      --forest-2:#7CA07C;
+      --leaf:#9DBF7C;
+      --gold:#E1B863;
+      --line:rgba(236,231,214,0.16);
+      --line-soft:rgba(236,231,214,0.09);
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 28px -14px rgba(0,0,0,0.6);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#1B1C15;
+    --card:#232419;
+    --ink:#ECE7D6;
+    --ink-soft:#B9B49F;
+    --forest:#93B78F;
+    --forest-2:#7CA07C;
+    --leaf:#9DBF7C;
+    --gold:#E1B863;
+    --line:rgba(236,231,214,0.16);
+    --line-soft:rgba(236,231,214,0.09);
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 28px -14px rgba(0,0,0,0.6);
+    color-scheme: dark;
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', system-ui, -apple-system, sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:600;
+    line-height:1.12;
+    text-wrap:balance;
+    margin:0;
+    color:var(--forest);
+  }
+  p{margin:0;}
+  a{color:inherit;}
+  img{max-width:100%;}
+
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding-inline:20px;
+  }
+  section{padding-block:clamp(48px,9vw,88px);}
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Work Sans',sans-serif;
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--forest-2);
+  }
+  .eyebrow::before{
+    content:"";
+    width:6px;height:6px;border-radius:50%;
+    background:var(--gold);
+    flex:none;
+  }
+
+  /* ---------- header ---------- */
+  header{
+    padding-block:22px;
+    border-bottom:1px solid var(--line-soft);
+  }
+  header .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+  }
+  .wordmark{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:22px;
+    color:var(--forest);
+    letter-spacing:.01em;
+  }
+  .wordmark small{
+    display:block;
+    font-family:'Work Sans',sans-serif;
+    font-weight:500;
+    font-size:11.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:13px 22px;
+    border-radius:100px;
+    font-family:'Work Sans',sans-serif;
+    font-weight:600;
+    font-size:14.5px;
+    text-decoration:none;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+  }
+  .btn-primary{
+    background:var(--forest);
+    color:var(--paper);
+    box-shadow:var(--shadow);
+  }
+  .btn-primary:hover{transform:translateY(-1px);}
+  .btn-ghost{
+    background:transparent;
+    color:var(--forest);
+    border-color:var(--line);
+    font-size:13.5px;
+    padding:10px 16px;
+    display:none;
+  }
+  @media (min-width:560px){ .btn-ghost{display:inline-flex;} }
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;overflow:hidden;padding-block:clamp(56px,11vw,108px) clamp(40px,8vw,72px);}
+  .hero-roots{
+    position:absolute;
+    right:-8%;
+    top:-6%;
+    width:min(560px,72vw);
+    height:auto;
+    opacity:.5;
+    color:var(--leaf);
+    pointer-events:none;
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .hero-roots{opacity:.32;} }
+  :root[data-theme="dark"] .hero-roots{opacity:.32;}
+  .hero-inner{position:relative;max-width:560px;}
+  h1.headline{
+    font-size:clamp(34px,6vw,52px);
+    margin-top:14px;
+  }
+  .hero-sub{
+    margin-top:20px;
+    font-size:17.5px;
+    color:var(--ink-soft);
+    max-width:46ch;
+  }
+  .hero-actions{
+    margin-top:32px;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:16px;
+  }
+  .trust-line{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    margin-top:40px;
+    padding-top:20px;
+    border-top:1px solid var(--line-soft);
+    max-width:46ch;
+    font-size:13.5px;
+    color:var(--ink-soft);
+  }
+  .trust-line svg{flex:none;margin-top:2px;color:var(--gold);}
+
+  /* ---------- stat ---------- */
+  .stat-section{border-top:1px solid var(--line-soft);}
+  .stat-grid{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:28px 32px;
+    align-items:start;
+    margin-top:28px;
+  }
+  @media (max-width:540px){ .stat-grid{grid-template-columns:1fr;} }
+  .stat-number{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(52px,10vw,76px);
+    color:var(--gold);
+    line-height:1;
+    white-space:nowrap;
+  }
+  .stat-text p{font-size:15.5px;color:var(--ink-soft);}
+  .stat-text .stat-label{
+    font-size:17px;
+    color:var(--ink);
+    font-weight:500;
+    margin-bottom:6px;
+  }
+  .source{
+    display:inline-block;
+    margin-top:10px;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    border-top:1px solid var(--line);
+    padding-top:8px;
+  }
+  .stat-body{
+    margin-top:26px;
+    font-size:15.5px;
+    color:var(--ink-soft);
+    max-width:62ch;
+  }
+
+  /* ---------- steps ---------- */
+  .steps{
+    margin-top:32px;
+    display:grid;
+    gap:14px;
+  }
+  .step{
+    display:grid;
+    grid-template-columns:44px 1fr;
+    gap:16px;
+    padding:20px;
+    background:var(--card);
+    border:1px solid var(--line-soft);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+  }
+  .step-icon{
+    width:44px;height:44px;
+    border-radius:12px;
+    background:var(--paper);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--forest);
+    flex:none;
+  }
+  .step h3{font-family:'Work Sans',sans-serif;font-weight:600;font-size:16.5px;color:var(--ink);}
+  .step p{margin-top:6px;font-size:14.5px;color:var(--ink-soft);}
+  .step-num{
+    font-family:'Fraunces',serif;
+    font-size:12px;
+    color:var(--forest-2);
+    letter-spacing:.04em;
+  }
+
+  /* ---------- disclaimer ---------- */
+  .note{
+    margin-top:36px;
+    display:flex;
+    gap:14px;
+    padding:20px 22px;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:var(--card);
+  }
+  .note svg{flex:none;color:var(--forest-2);margin-top:2px;}
+  .note p{font-size:14px;color:var(--ink-soft);}
+  .note strong{color:var(--ink);}
+
+  /* ---------- form ---------- */
+  .form-section{
+    border-top:1px solid var(--line-soft);
+  }
+  .form-card{
+    margin-top:28px;
+    padding:clamp(22px,4vw,36px);
+    background:var(--card);
+    border:1px solid var(--line-soft);
+    border-radius:calc(var(--radius) + 4px);
+    box-shadow:var(--shadow);
+  }
+  .field{margin-bottom:20px;}
+  .field label{
+    display:block;
+    font-size:13.5px;
+    font-weight:600;
+    margin-bottom:8px;
+    color:var(--ink);
+  }
+  .field .hint{font-weight:400;color:var(--ink-soft);font-size:12.5px;display:block;margin-top:4px;}
+  input[type="text"], input[type="email"], select, textarea{
+    width:100%;
+    font:inherit;
+    font-size:15px;
+    padding:12px 14px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans',sans-serif;
+  }
+  textarea{resize:vertical;min-height:88px;}
+  input:focus, select:focus, textarea:focus{
+    outline:2px solid var(--forest-2);
+    outline-offset:1px;
+  }
+  .radio-group{display:grid;gap:8px;}
+  .radio-option{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:11px 14px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    cursor:pointer;
+    font-size:14.5px;
+    background:var(--paper);
+  }
+  .radio-option input{accent-color:var(--forest);width:16px;height:16px;flex:none;}
+  .radio-option:has(input:checked){
+    border-color:var(--forest-2);
+    background:color-mix(in srgb, var(--forest) 8%, var(--paper));
+  }
+  .submit-row{
+    margin-top:8px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .form-note{font-size:12.5px;color:var(--ink-soft);}
+  .thanks{
+    display:none;
+    text-align:center;
+    padding:20px 0;
+  }
+  .thanks svg{color:var(--forest-2);margin-bottom:14px;}
+  .thanks h3{font-family:'Fraunces',serif;font-size:22px;color:var(--forest);}
+  .thanks p{margin-top:10px;font-size:14.5px;color:var(--ink-soft);max-width:40ch;margin-inline:auto;}
+  form.is-submitted .form-fields{display:none;}
+  form.is-submitted .thanks{display:block;}
+
+  /* ---------- footer ---------- */
+  footer{
+    border-top:1px solid var(--line-soft);
+    padding-block:28px;
+  }
+  footer .wrap{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .foot-word{font-family:'Fraunces',serif;color:var(--forest);font-size:15px;}
+  .foot-fine{font-size:12px;color:var(--ink-soft);max-width:60ch;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; animation:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark">Raíz<small>Detección temprana, en casa</small></div>
+    <a class="btn btn-ghost" href="#form">Sumarme</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <svg class="hero-roots" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M210 20 C205 90, 215 140, 200 200" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M200 200 C160 220, 140 250, 110 320" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M200 200 C230 230, 235 260, 220 330" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M200 200 C190 235, 165 255, 130 265" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M205 150 C240 160, 260 150, 285 120" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M198 150 C165 165, 145 160, 120 135" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M110 320 C95 345, 96 365, 108 385" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M220 330 C232 352, 230 370, 216 392" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      <circle cx="210" cy="20" r="4" fill="currentColor"/>
+    </svg>
+    <div class="wrap">
+      <div class="hero-inner">
+        <span class="eyebrow">Educación · 3 a 5 años</span>
+        <h1 class="headline">Cada señal a tiempo abre un camino distinto</h1>
+        <p class="hero-sub">Raíz es una app para acompañar en casa el desarrollo del lenguaje y las matemáticas de tu hijo o hija, y saber con más claridad cuándo vale la pena consultar a un profesional.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#form">
+            Quiero sumarme a la validación
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="trust-line">
+          <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 2l6.5 2.9v4.4c0 4.4-2.8 8.1-6.5 9.7-3.7-1.6-6.5-5.3-6.5-9.7V4.9L10 2z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          <p>Proyecto en etapa de validación en Uruguay. Raíz no reemplaza un diagnóstico ni una consulta profesional.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stat-section">
+    <div class="wrap">
+      <span class="eyebrow">Por qué Raíz</span>
+      <div class="stat-grid">
+        <div class="stat-number">1 de 5</div>
+        <div class="stat-text">
+          <p class="stat-label">niños y niñas menores de 5 años en Uruguay presenta dificultades en lenguaje o matemáticas.</p>
+          <p class="source">Fuente: INEEd y Udelar, 2025</p>
+        </div>
+      </div>
+      <p class="stat-body">Esas dificultades, cuando no se detectan a tiempo, anticipan un bajo rendimiento escolar. Hoy la mayoría de las familias depende de una consulta médica o de un especialista para darse cuenta — y esa consulta muchas veces llega tarde, o no llega. Raíz busca adelantar esa detección, desde la casa y de forma accesible.</p>
+    </div>
+  </section>
+
+  <section class="how">
+    <div class="wrap">
+      <span class="eyebrow">Cómo funciona</span>
+      <h2 style="margin-top:14px;font-size:clamp(24px,4vw,30px);">Tres pasos, sin complicarla</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6.5C4 5.1 5.1 4 6.5 4H11v14H6.5C5.1 18 4 16.9 4 15.5v-9Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M20 6.5C20 5.1 18.9 4 17.5 4H13v14h4.5c1.4 0 2.5-1.1 2.5-2.5v-9Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 8v8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <span class="step-num">01</span>
+            <h3>Observás con actividades simples</h3>
+            <p>Juegos y ejercicios cortos para hacer en casa, pensados para mostrar cómo tu hijo o hija se relaciona con el lenguaje y los números.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M15.3 15.3L20 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7.5 10.5l2 2 3.5-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <span class="step-num">02</span>
+            <h3>Recibís señales claras</h3>
+            <p>Raíz traduce lo que observaste en información concreta: qué es esperable para su edad y qué vale la pena mirar de cerca.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="6" cy="12" r="2.4" stroke="currentColor" stroke-width="1.5"/><circle cx="18" cy="6" r="2.4" stroke="currentColor" stroke-width="1.5"/><circle cx="18" cy="18" r="2.4" stroke="currentColor" stroke-width="1.5"/><path d="M8.2 11l7.6-4M8.2 13l7.6 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <span class="step-num">03</span>
+            <h3>Sabés cuándo dar el siguiente paso</h3>
+            <p>Si aparecen señales de alerta, te acompañamos hacia una consulta profesional — con información, no con diagnósticos.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.4"/><path d="M10 9v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="10" cy="6.3" r="1" fill="currentColor"/></svg>
+        <p><strong>Raíz no diagnostica ni reemplaza a un pediatra, fonoaudiólogo/a, psicopedagogo/a</strong> ni a ningún otro profesional de la salud. Es una herramienta de estimulación y detección temprana pensada para acompañar, no para sustituir a quien corresponde.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="form-section" id="form">
+    <div class="wrap">
+      <span class="eyebrow">Etapa de validación</span>
+      <h2 style="margin-top:14px;font-size:clamp(24px,4vw,30px);">Ayudanos a validar la idea</h2>
+      <p style="margin-top:12px;color:var(--ink-soft);font-size:15px;max-width:56ch;">Antes de construir la app, queremos confirmar algo simple: que esto le sirve a las familias y que tiene sentido como acompañamiento pago. Dos minutos — tu respuesta define los próximos pasos.</p>
+
+      <div class="form-card">
+        <form id="raiz-form">
+          <div class="form-fields">
+            <div class="field">
+              <label for="f-nombre">Nombre</label>
+              <input type="text" id="f-nombre" name="nombre" required autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input type="email" id="f-email" name="email" required autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="f-hijos">¿Tenés hijos o hijas de 3 a 5 años?</label>
+              <select id="f-hijos" name="hijos" required>
+                <option value="" disabled selected>Elegí una opción</option>
+                <option value="si">Sí</option>
+                <option value="no">No, pero me interesa el tema</option>
+                <option value="embarazo">Estoy embarazada o planeando</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>¿Pagarías por una herramienta que te ayude a detectar y acompañar esto en casa?</label>
+              <div class="radio-group" role="radiogroup">
+                <label class="radio-option"><input type="radio" name="pago" value="si" required> Sí, con gusto</label>
+                <label class="radio-option"><input type="radio" name="pago" value="talvez"> Tal vez, depende del precio</label>
+                <label class="radio-option"><input type="radio" name="pago" value="no"> No</label>
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-comentario">Comentario <span class="hint">Opcional — ¿qué te gustaría que tenga esta herramienta?</span></label>
+              <textarea id="f-comentario" name="comentario"></textarea>
+            </div>
+          </div>
+
+          <div class="submit-row">
+            <button type="submit" class="btn btn-primary">Enviar respuesta</button>
+            <span class="form-note">Se abre tu app de email para confirmar el envío.</span>
+          </div>
+
+          <div class="thanks">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.6"/><path d="M13 20.5l4.5 4.5L27.5 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3>¡Gracias!</h3>
+            <p>Tu respuesta nos ayuda un montón a decidir los próximos pasos. Si dejaste tu email, te vamos a escribir apenas tengamos novedades.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="foot-word">Raíz</span>
+    <p class="foot-fine">Este proyecto está en etapa de idea y validación. No constituye un servicio médico, psicológico ni de diagnóstico, y no reemplaza la consulta con un profesional de la salud.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // TODO: reemplazar por el email real donde quieran recibir las respuestas
+  // de la encuesta antes de compartir esta landing con familias.
+  var CONTACT_EMAIL = "TU-EMAIL-AQUI@ejemplo.com";
+
+  var form = document.getElementById('raiz-form');
+  if(!form) return;
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var data = new FormData(form);
+    var nombre = (data.get('nombre') || '').toString().trim();
+    var email = (data.get('email') || '').toString().trim();
+    var hijos = (data.get('hijos') || '').toString();
+    var pago = (data.get('pago') || '').toString();
+    var comentario = (data.get('comentario') || '').toString().trim();
+
+    var hijosLabel = {si:'Sí', no:'No, pero le interesa', embarazo:'Está embarazada / planeando'}[hijos] || hijos;
+    var pagoLabel = {si:'Sí, con gusto', talvez:'Tal vez, depende del precio', no:'No'}[pago] || pago;
+
+    var subject = 'Raíz — nueva respuesta de validación';
+    var body = [
+      'Nombre: ' + nombre,
+      'Email: ' + email,
+      '¿Tiene hijos/as de 3 a 5 años?: ' + hijosLabel,
+      '¿Pagaría por la herramienta?: ' + pagoLabel,
+      'Comentario: ' + (comentario || '—')
+    ].join('\n');
+
+    var mailto = 'mailto:' + encodeURIComponent(CONTACT_EMAIL) +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(body);
+
+    window.location.href = mailto;
+    form.classList.add('is-submitted');
+  });
+})();
+</script>
+</body>
+</html>
