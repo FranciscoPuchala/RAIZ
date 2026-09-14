@@ -32,8 +32,10 @@ Para eso: encuestas a familias + landing page de validación (lo que hay en este
 RAIZ/
 ├── index.html             → estructura y copy de la landing (solo HTML)
 ├── css/styles.css         → todos los estilos (tokens de color arriba de todo)
+├── js/header.js           → aviso superior, header al hacer scroll, menú móvil, sección activa
 ├── js/formulario.js       → formulario en 2 pasos + armado del mailto
 ├── js/interacciones.js    → aparición al hacer scroll + CTA fijo en móvil
+├── img/marca/logo.svg     → logo (brote con raíces), también usado como favicon
 ├── img/icons/*.svg        → íconos e ilustración de raíces
 └── README.md              → este documento
 ```
@@ -52,6 +54,7 @@ Abrirla con un servidor local, **no con doble clic**: con `file://` el navegador
 
 Rehecha con la skill `landing-page-mastery` (estructura de formato corto, orientada a conversión). Una sola página, mobile-first, en español rioplatense:
 
+0. **Aviso + header** — barra superior "En validación" (se puede cerrar), logo, navegación solo con anclas a secciones de la página (sin salidas) que marca la sección activa, barra de progreso de lectura y menú desplegable en móvil. El botón "Quiero sumarme" del header aparece recién cuando el del hero sale de pantalla, para no tener dos CTA compitiendo.
 1. **Hero** — titular de resultado concreto, CTA con micro-copy ("Gratis · 1 minuto · Sin compromiso"), dato de INEEd/Udelar como credibilidad, aviso de que no diagnostica y un **boceto ilustrativo de la app** hecho en HTML/CSS.
 2. **Problema (PAS)** — 3 dudas típicas de las familias → consecuencia (bajo rendimiento escolar, consulta tardía) → Raíz como solución.
 3. **Cómo funciona** — 3 pasos: jugás en casa → anotás lo que observaste → salís de la duda.
