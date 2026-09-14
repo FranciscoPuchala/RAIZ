@@ -28,7 +28,7 @@ Para eso: encuestas a familias + landing page de validación (lo que hay en este
 
 ## Qué hay en este repo
 
-- `index.html` — landing page de validación, lista para publicar (sin backend, un solo archivo).
+- `index.html` — landing page de validación, lista para publicar (sin backend, un solo archivo). Tiene que llamarse exactamente `index.html` para que GitHub Pages la sirva en la raíz.
 - `README.md` — este documento.
 
 ## Cómo está armada la landing
