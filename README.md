@@ -28,8 +28,24 @@ Para eso: encuestas a familias + landing page de validación (lo que hay en este
 
 ## Qué hay en este repo
 
-- `index.html` — landing page de validación, lista para publicar (sin backend, un solo archivo). Tiene que llamarse exactamente `index.html` para que GitHub Pages la sirva en la raíz.
-- `README.md` — este documento.
+```
+RAIZ/
+├── index.html          → estructura de la landing (solo HTML)
+├── css/styles.css      → todos los estilos
+├── js/main.js          → lógica del formulario
+├── img/icons/*.svg     → íconos e ilustración de raíces
+└── README.md           → este documento
+```
+
+- `index.html` queda en la raíz porque GitHub Pages lo necesita ahí, con ese nombre exacto.
+- Los íconos se cargan desde CSS como máscara (`mask-image`) y toman el color del texto, así se adaptan al modo oscuro.
+
+### Cómo previsualizar
+
+Abrirla con un servidor local, **no con doble clic**: con `file://` el navegador bloquea las máscaras SVG y los íconos no aparecen. En GitHub Pages se ven bien.
+
+- VS Code: clic derecho en `index.html` → **Open with Live Server**.
+- O desde la carpeta del repo: `python -m http.server` y abrir `http://localhost:8000`.
 
 ## Cómo está armada la landing
 
@@ -45,7 +61,7 @@ Una sola página, mobile-first, en español rioplatense:
 
 El formulario hoy **no tiene backend**. Al enviarlo, arma un `mailto:` con las respuestas y le abre al usuario su cliente de mail. Es un placeholder funcional para no bloquear la publicación.
 
-1. **Email de destino.** En `index.html`:
+1. **Email de destino.** En `js/main.js`:
    ```js
    var CONTACT_EMAIL = "franpuchala8@gmail.com";
    ```
@@ -67,4 +83,5 @@ El formulario hoy **no tiene backend**. Al enviarlo, arma un `mailto:` con las r
 ## Convenciones de trabajo
 
 - Idioma de todo el copy: español rioplatense.
+- **Un lenguaje por archivo, cada uno en su carpeta** (`css/`, `js/`, `img/`…). Nada de `<style>`, `<script>`, `style="..."` ni SVG inline en el HTML.
 - Flujo habitual del proyecto: clarificar el brief → README para Claude Code → build → commit → push a GitHub (repo `RAIZ`), un commit por cambio relevante.
